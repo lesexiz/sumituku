@@ -111,7 +111,7 @@ class Music(commands.Cog):
     async def join(self, ctx):
         # コマンドを送ったユーザーがボイスチャンネルに居ない場合
         if ctx.author.voice is None:
-            await ctx.channel.send("操作する前にボイスチャンネルに接続してください。")
+            await ctx.channel.send("操作する前にボイスチャンネルに接続してくれぴょ。")
             return
 
         # ボイスチャンネルに接続する
@@ -122,37 +122,37 @@ class Music(commands.Cog):
     async def leave(self, ctx):
         # コマンドを送ったユーザーがボイスチャンネルに居ない場合
         if ctx.author.voice is None:
-            await ctx.channel.send("操作する前にボイスチャンネルに接続してください。")
+            await ctx.channel.send("操作する前にボイスチャンネルに接続してくれぴょ。。")
             return
 
         # Botがボイスチャンネルに居ない場合
         if ctx.guild.voice_client is None:
-            await ctx.channel.send("Botがボイスチャンネルに接続していません。")
+            await ctx.channel.send("Botがボイスチャンネルに接続してねぇぴょ。")
             return
 
         # 切断する
         await ctx.guild.voice_client.disconnect()
-        await ctx.channel.send("切断しました。")
+        await ctx.channel.send("切断したぴょ。")
 
     @commands.command(aliases=["np"])
     async def nowplaying(self, ctx):
         # コマンドを送ったユーザーがボイスチャンネルに居ない場合
         if ctx.author.voice is None:
-            await ctx.channel.send("操作する前にボイスチャンネルに接続してください。")
+            await ctx.channel.send("操作する前にボイスチャンネルに接続してくれぴょ。")
             return
 
         # Botがボイスチャンネルに居ない場合
         if ctx.guild.voice_client is None:
-            await ctx.channel.send("Botがボイスチャンネルに接続していません。")
+            await ctx.channel.send("Botがボイスチャンネルに接続してねぇぴょ。")
             return
 
         # 再生中ではない場合は実行しない
         if not ctx.guild.voice_client.is_playing():
-            await ctx.channel.send("再生していません。")
+            await ctx.channel.send("再生してねぇぴょ。")
             return
 
         embed = discord.Embed(colour=0xff00ff, title=self.player.title, url=self.player.original_url)
-        embed.set_author(name="現在再生中")
+        embed.set_author(name="現在再生中ぴょ")
 
         # YouTube再生時にサムネイルも一緒に表示できるであろう構文
         # if "youtube.com" in self.player.original_url or "youtu.be" in self.player.original_url:
@@ -168,7 +168,7 @@ class Music(commands.Cog):
     async def play(self, ctx, *, url):
         # コマンドを送ったユーザーがボイスチャンネルに居ない場合
         if ctx.author.voice is None:
-            await ctx.channel.send("操作する前にボイスチャンネルに接続してください。")
+            await ctx.channel.send("操作する前にボイスチャンネルに接続してくれぴょ。")
             return
 
         # ボイスチャンネルにBotが未接続の場合はボイスチャンネルに接続する
@@ -176,7 +176,7 @@ class Music(commands.Cog):
             await ctx.author.voice.channel.connect()
 
         embed = discord.Embed(colour=0xff00ff)
-        embed.set_author(name="処理中です...")
+        embed.set_author(name="処理中ぴょ...")
         play_msg: discord.Message = await ctx.channel.send(embed=embed)
 
         # niconico.py は短縮URLも取り扱えるっぽいので信じてみる
@@ -191,7 +191,7 @@ class Music(commands.Cog):
             # self.playerに追加すると再生中の曲と衝突する
             self.queue.append(source)
             embed = discord.Embed(colour=0xff00ff, title=source.title, url=source.original_url)
-            embed.set_author(name="キューに追加しました")
+            embed.set_author(name="キューに追加したぴょ")
             await play_msg.edit(embed=embed)
 
         else:  # 他の曲を再生していない場合
@@ -199,24 +199,24 @@ class Music(commands.Cog):
             self.player = source
             ctx.guild.voice_client.play(self.player, after=lambda e: after_play_niconico(self.player, e, ctx.guild, self.after_play))
             embed = discord.Embed(colour=0xff00ff, title=self.player.title, url=self.player.original_url)
-            embed.set_author(name="再生を開始します")
+            embed.set_author(name="再生を開始するぴょ")
             await play_msg.edit(embed=embed)
 
     @commands.command(aliases=["q"])
     async def queue(self, ctx):
         # コマンドを送ったユーザーがボイスチャンネルに居ない場合
         if ctx.author.voice is None:
-            await ctx.channel.send("操作する前にボイスチャンネルに接続してください。")
+            await ctx.channel.send("操作する前にボイスチャンネルに接続してくれぴょ。")
             return
 
         # Botがボイスチャンネルに居ない場合
         if ctx.guild.voice_client is None:
-            await ctx.channel.send("Botがボイスチャンネルに接続していません。")
+            await ctx.channel.send("Botがボイスチャンネルに接続してねぇぴょ。")
             return
 
         # 再生中ではない場合は実行しない
         if not ctx.guild.voice_client.is_playing():
-            embed = discord.Embed(colour=0xff00ff, title="現在のキュー", description="再生されていません")
+            embed = discord.Embed(colour=0xff00ff, title="現在のキュー", description="再生されてねぇぴょ")
             await ctx.channel.send(embed=embed)
             return
 
@@ -238,62 +238,62 @@ class Music(commands.Cog):
     async def skip(self, ctx):
         # コマンドを送ったユーザーがボイスチャンネルに居ない場合
         if ctx.author.voice is None:
-            await ctx.channel.send("操作する前にボイスチャンネルに接続してください。")
+            await ctx.channel.send("操作する前にボイスチャンネルに接続してくれぴょ。")
             return
 
         # Botがボイスチャンネルに居ない場合
         if ctx.guild.voice_client is None:
-            await ctx.channel.send("Botがボイスチャンネルに接続していません。")
+            await ctx.channel.send("Botがボイスチャンネルに接続してねぇぴょ。")
             return
 
         # 再生中ではない場合は実行しない
         if not ctx.guild.voice_client.is_playing():
-            await ctx.channel.send("再生していません。")
+            await ctx.channel.send("再生してねぇぴょ。")
             return
 
         ctx.guild.voice_client.stop()
-        await ctx.channel.send("次の曲を再生します。")
+        await ctx.channel.send("次の曲を再生するぴょ。")
 
     @commands.command()
     async def shuffle(self, ctx):
         # コマンドを送ったユーザーがボイスチャンネルに居ない場合
         if ctx.author.voice is None:
-            await ctx.channel.send("操作する前にボイスチャンネルに接続してください。")
+            await ctx.channel.send("操作する前にボイスチャンネルに接続してくれぴょ。")
             return
 
         # Botがボイスチャンネルに居ない場合
         if ctx.guild.voice_client is None:
-            await ctx.channel.send("Botがボイスチャンネルに接続していません。")
+            await ctx.channel.send("Botがボイスチャンネルに接続してねぇぴょ。")
             return
 
         # 再生中ではない場合は実行しない
         if not ctx.guild.voice_client.is_playing():
-            await ctx.channel.send("再生していません。")
+            await ctx.channel.send("再生してねぇぴょ。")
             return
 
         random.shuffle(self.queue)
-        await ctx.channel.send("キューをシャッフルしました。")
+        await ctx.channel.send("キューをシャッフルしたぴょ。")
 
     @commands.command()
     async def stop(self, ctx):
         # コマンドを送ったユーザーがボイスチャンネルに居ない場合
         if ctx.author.voice is None:
-            await ctx.channel.send("操作する前にボイスチャンネルに接続してください。")
+            await ctx.channel.send("操作する前にボイスチャンネルに接続してくれぴょ。")
             return
 
         # Botがボイスチャンネルに居ない場合
         if ctx.guild.voice_client is None:
-            await ctx.channel.send("Botがボイスチャンネルに接続していません。")
+            await ctx.channel.send("Botがボイスチャンネルに接続してねぇぴょ。")
             return
 
         # 再生中ではない場合は実行しない
         if not ctx.guild.voice_client.is_playing():
-            await ctx.channel.send("再生していません。")
+            await ctx.channel.send("再生してねぇぴょ。")
             return
 
         self.queue.clear()
         ctx.guild.voice_client.stop()
-        await ctx.channel.send("再生を停止し、キューをリセットしました。")
+        await ctx.channel.send("再生を停止し、キューをリセットしたぴょ。")
 
 
 class NicoNicoDLSource(discord.PCMVolumeTransformer):
@@ -354,7 +354,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=now_time.strftime("%Y/%m/%d %H:%M:%S")))
 
     channel = bot.get_channel(GIRATINA_CHANNEL_ID)
-    await channel.send("ギラティナ、オォン！")
+    await channel.send("イキスギぴょ！あ～そこそこ気持ちいいぴょ～♥")
 
 
 # メッセージ送信時に実行される関数
@@ -616,9 +616,9 @@ async def hutao(ctx):
 @bot.command()
 async def inm(ctx):
     await ctx.send(
-        "聖バリ「イキスギィイクイク！！！ンアッー！！！マクラがデカすぎる！！！」\n\n"
-        f"{ctx.author.name}「聖なるバリア －ミラーフォース－、淫夢はもうやめてよ！淫夢ごっこは恥ずかしいよ！」\n\n"
-        f"聖バリ「{ctx.author.name}、おっ大丈夫か大丈夫か〜？？？バッチェ冷えてるぞ〜淫夢が大好きだってはっきりわかんだね」"
+        "ぴよこ「イキスギィイクイク！！！ンアッー！！！マクラがデカすぎるぴょ！！！」\n\n"
+        f"{ctx.author.name}「ぴよこ、淫夢はもうやめてよ！淫夢ごっこは恥ずかしいよ！」\n\n"
+        f"ぴよこ「{ctx.author.name}、おっ大丈夫か大丈夫か〜？？？バッチェ冷えてるぞ〜淫夢が大好きだってはっきりわかんだねぴょ♥」"
     )
 
 
@@ -727,7 +727,7 @@ async def ping(ctx):
 # Raika
 @bot.command()
 async def raika(ctx):
-    await ctx.send("Twitterをやってるときの指の動作またはスマートフォンを凝視するという行動が同じだけなのであって容姿がこのような姿であるという意味ではありません")
+    await ctx.send("Twitterをやってるときの指の動作またはスマートフォンを凝視するという行動が同じだけなのであって容姿がこのような姿であるという意味ではありませんぴょ")
 
 
 # サターニャを送信
