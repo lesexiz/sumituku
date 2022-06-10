@@ -116,7 +116,7 @@ class Music(commands.Cog):
 
         # ボイスチャンネルに接続する
         await ctx.author.voice.channel.connect()
-        await ctx.channel.send("接続しました。")
+        await ctx.channel.send("接続したぴょ。")
 
     @commands.command()
     async def leave(self, ctx):
