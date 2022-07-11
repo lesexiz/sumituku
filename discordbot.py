@@ -422,9 +422,9 @@ async def on_message(ctx):
         await ctx.channel.send("はぁ、どちら様ですか？")
 
     # メッセージの本文が ランキング だった場合
-    if "ランキング" in str(ctx.content):
+    #if "ランキング" in str(ctx.content):
         # メッセージが送られてきたチャンネルに送る
-        await ctx.channel.send("https://cdn.discordapp.com/attachments/889054561170522152/942109619243864085/E8sV781VIAEtwZq.png")
+        #await ctx.channel.send("https://cdn.discordapp.com/attachments/889054561170522152/942109619243864085/E8sV781VIAEtwZq.png")
 
     # メッセージの本文が 一週間 だった場合
     if "一週間" in str(ctx.content) or "1週間" in str(ctx.content):
